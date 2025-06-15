@@ -1,17 +1,18 @@
 import  '../src/App.css';
 
 import TodoList from './Todo-list.tsx';
-import Input from './Input.tsx';
+import Input, { type TodoProp } from './Input.tsx';
 import { useState } from 'react';
 
 export default function TodoApp() {
-  const [todos, addTodos] = useState<string[]>([]);
+  const [todos, addTodos] = useState<TodoProp[]>([]);
 
-  const addTodosHandler = (newTodo: string) => {
-    if(newTodo.trim()){
+  const addTodosHandler = (newTodo: TodoProp) => {
+    if(newTodo){
       addTodos(prev => [...prev, newTodo]);
     }
   }
+  
   return (
     <div className="app-container">
       <div className="todo-card">
@@ -25,7 +26,7 @@ export default function TodoApp() {
         <Input onAddTodo={addTodosHandler}/>
 
         {/* Todo List */}
-        <TodoList/>
+        <TodoList todos={todos}/>
         
       </div>
     </div>
