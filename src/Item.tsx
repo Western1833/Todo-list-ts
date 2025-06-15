@@ -2,9 +2,11 @@ import { useState } from "react";
 
 type ItemProp = {
     text: string;
+    id: string;
+    onDelete: (id: string) => void;
 }
 
-export default function Item({ text }: ItemProp) {
+export default function Item({ id, text, onDelete }: ItemProp) {
     const [checked, setChecked] = useState(false);
 
     const toggleCheck = () =>  setChecked(prev => !prev);
@@ -16,7 +18,7 @@ export default function Item({ text }: ItemProp) {
             onChange={toggleCheck}
             />
             <span className="todo-text">{text}</span>
-            <button className="delete-button">🗑️</button>
+            <button className="delete-button" onClick={() => onDelete(id)}>🗑️</button>
         </div>
     );
 }

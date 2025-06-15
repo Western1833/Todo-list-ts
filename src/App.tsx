@@ -12,7 +12,11 @@ export default function TodoApp() {
       addTodos(prev => [...prev, newTodo]);
     }
   }
-  
+
+  const deleteTodoHandler = (id: string) => {
+    addTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+  }
+
   return (
     <div className="app-container">
       <div className="todo-card">
@@ -26,7 +30,7 @@ export default function TodoApp() {
         <Input onAddTodo={addTodosHandler}/>
 
         {/* Todo List */}
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onDelete={deleteTodoHandler}/>
         
       </div>
     </div>

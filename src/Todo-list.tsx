@@ -3,9 +3,10 @@ import Item from "./Item.tsx";
 
 type TodoListProps = {
     todos: TodoProp[];
+    onDelete: (id: string) => void;
 }
 
-export default function TodoList({todos}: TodoListProps) {
+export default function TodoList({todos, onDelete}: TodoListProps) {
     return (
         <div className="todo-list">
             {todos.length === 0 ? (
@@ -17,7 +18,7 @@ export default function TodoList({todos}: TodoListProps) {
             ):(
                 <div className="todos-container">
                     {todos.map(todo => (
-                        <Item key={todo.id} text={todo.text}/>
+                        <Item key={todo.id} id={todo.id} text={todo.text} onDelete={onDelete}/>
                     ))}
                 </div>
             )}
